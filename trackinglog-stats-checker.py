@@ -5,11 +5,8 @@
 import argparse
 import sys
 import os
-import gzip
-import json
 import re
 from pymongo import MongoClient
-from pymongo import ASCENDING
 from pymongo.errors import ConnectionFailure
 import csv
 

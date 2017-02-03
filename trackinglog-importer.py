@@ -66,11 +66,11 @@ class MongoDBTrackingLogImporter:
             self.mongodb[mongocol].insert(data)
             self.importstats.importedLines += 1
         except ValueError as e:
-            print ("Not able to parse the json ({0}) at line {1}:  {2} ".format(e.message, linenumber, linestr))
+            print ("Not able to parse the json ({0}) at line {1}:  {2} ".format(e.message, linenumber, linestr.encode('utf-8')))
             # Try to recover error before "giving up"
             self.importstats.addImportError(e.message,linenumber,filename)
         except DuplicateKeyError as e:
-            print ("Data already inserted in the database ({0}) at line {1}:  {2} ".format(e.message, linenumber, linestr))
+            print ("Data already inserted in the database ({0}) at line {1}:  {2} ".format(e.message, linenumber, linestr.encode('utf-8')))
 
     def importAFileInMongo (self,filepath,filename):
         # We consider that logs files are of the type gzip
